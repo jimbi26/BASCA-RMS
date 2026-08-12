@@ -54,7 +54,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <div class="login-header">
 
             <div class="logo-wrapper">
-                <img src="Bagabag Logo.jpg" alt="Organization Logo" style="border: 1px solid gray;">
+                <img src="Bagabag Logo.jpg" alt="Organization Logo">
             </div>
 
             <div class="header-text">
@@ -62,7 +62,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <p>Barangay Association of Senior Citizens Affairs Records Information System</p>
             </div>
             <div class="logo-wrapper">
-                <img src="LOGOMWSWD.jpg" alt="MFSCAP Logo" style="border: 1px solid gray;">
+                <img src="LOGO.jpg" alt="MFSCAP Logo">
             </div>
 
         </div>
