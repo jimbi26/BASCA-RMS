@@ -54,16 +54,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <div class="login-header">
 
             <div class="logo-wrapper">
-                <img src="Bagabag Logo.jpg" alt="Organization Logo">
+                <img src="Bagabag Logo.jpg" alt="Organization Logo" style="border: 1px solid gray;">
             </div>
 
             <div class="header-text">
                 <h3>BASCA-RIS</h3>
                 <p>Barangay Association of Senior Citizens Affairs Records Information System</p>
             </div>
-
             <div class="logo-wrapper">
-                <img src="mfscap logo.png" alt="MFSCAP Logo">
+                <img src="LOGOMWSWD.jpg" alt="MFSCAP Logo" style="border: 1px solid gray;">
             </div>
 
         </div>
