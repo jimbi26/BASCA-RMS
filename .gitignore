@@ -1,1 +1,16 @@
 .env
+.env.local
+.env.*
+# Common ignores
+.DS_Store
+.vscode/
+/.idea/
+node_modules/
+# Logs
+*.log
+
+# Composer
+/vendor/
+
+# OS files
+Thumbs.db

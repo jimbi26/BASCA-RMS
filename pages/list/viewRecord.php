@@ -1,7 +1,8 @@
 <?php
 
 include '../../config/db.php';
-$baseUrl = '/BASCA-RMS';
+// Base URL -- use `BASE_URL` env var on platforms like Vercel, otherwise default to root
+$baseUrl = getenv('BASE_URL') ?: '';
 /* =========================================
    DELETE SENIOR CITIZEN
 ========================================= */
@@ -120,9 +121,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_record'])) {
    SUPABASE STORAGE
 ========================================= */
 
-$supabaseUrl = 'https://qrsxsxbnndjajhnjwuwv.supabase.co';
+$supabaseUrl = getenv('SUPABASE_URL') ?: 'https://qrsxsxbnndjajhnjwuwv.supabase.co';
 
-$storageBucket = 'senior-documents';
+$storageBucket = getenv('SUPABASE_BUCKET') ?: 'senior-documents';
 
 
 /* =========================================

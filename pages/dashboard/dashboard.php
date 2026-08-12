@@ -3,7 +3,7 @@
 // DASHBOARD.PHP
 // =========================================
 
-$baseUrl = '/BASCA-RMS'; // Base URL for the application
+$baseUrl = getenv('BASE_URL') ?: ''; // Base URL for the application (use env on Vercel)
 
 include '../../config/db.php';
 

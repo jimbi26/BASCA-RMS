@@ -2,7 +2,8 @@
 // sidebar.php
 
 if (!isset($baseUrl)) {
-    $baseUrl = '/BASCA-RMS'; // Default base URL if not set 
+    // Allow overriding the base URL via the BASE_URL environment variable (Vercel).
+    $baseUrl = getenv('BASE_URL') ?: '';
 }
 ?>
 <link rel="stylesheet" href="../../assets/sidebar/sidebar.css">
