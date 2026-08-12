@@ -11,7 +11,7 @@ if (!isset($baseUrl)) {
 <aside class="sidebar">
 
     <div class="sidebar-header">
-        <img src="../../pages/login/mfscap logo.png" alt="Organization Logo">
+        <img src="../../pages/login/LOGO.jpg" alt="Organization Logo">
 
         <div>
             <h2>BASCA-RMS</h2>
