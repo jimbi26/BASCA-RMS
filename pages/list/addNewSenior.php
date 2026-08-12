@@ -7,11 +7,11 @@ include '../../config/db.php';
    SUPABASE STORAGE SETTINGS
 ========================================================= */
 
-$supabaseUrl = 'https://qrsxsxbnndjajhnjwuwv.supabase.co';
+$supabaseUrl = getenv('SUPABASE_URL') ?: 'https://qrsxsxbnndjajhnjwuwv.supabase.co';
 
 $supabaseServiceKey = getenv('SUPABASE_SERVICE_KEY') ?: '';
 
-$storageBucket = 'senior-documents';
+$storageBucket = getenv('SUPABASE_BUCKET') ?: 'senior-documents';
 
 
 /* =========================================================
