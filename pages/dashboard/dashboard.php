@@ -465,7 +465,7 @@ function calculateAge($birthDate)
                 </span>
 
 
-                <a href="<?php echo $baseUrl; ?>pages/list/seniorlist.php" class="view-all">
+                <a href="<?php echo $baseUrl; ?>/pages/list/seniorList.php" class="view-all">
 
                     View All Records
 
