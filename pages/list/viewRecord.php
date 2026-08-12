@@ -304,7 +304,6 @@ This uses the `$pdo` connection from your `db.php`, which is the connection your
 
 <body>
     <?php include '../../assets/sidebar/sidebar.php'; ?>
-    <link rel="stylesheet" href="../../pages/list/seniorList.css">
     <link rel="stylesheet" href="../../pages/list/viewrecord.css">
     </aside>
     <main class="main-content">

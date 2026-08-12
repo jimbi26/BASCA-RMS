@@ -155,7 +155,7 @@ function calculateAge($birthDate)
     <link rel="stylesheet" href="../../pages/dashboard/dashboard.css">
 
     <!-- Chart.js -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>
 
 </head>
 

@@ -150,19 +150,12 @@ function uploadToSupabase($file, $storagePath)
 
         CURLOPT_HTTPHEADER => [
 
-            'Authorization: Bearer ' .
-            $supabaseServiceKey,
-
-            'apikey: ' .
-            $supabaseServiceKey,
-
-            'Content-Type: ' .
-            $realMimeType,
-
-            'Content-Length: ' .
-            strlen($fileData),
-
-            'x-upsert: true'
+            'Authorization: Bearer ' . $supabaseServiceKey,
+            'apikey: ' . $supabaseServiceKey,
+            'Content-Type: ' . $realMimeType,
+            'Content-Length: ' . strlen($fileData),
+            'x-upsert: true',
+            'Connection: keep-alive'
 
         ],
 
@@ -181,29 +174,6 @@ function uploadToSupabase($file, $storagePath)
          * Follow redirects
          */
         CURLOPT_FOLLOWLOCATION => true,
-
-        /*
-         * Keep HTTP connection alive
-         */
-        CURLOPT_HTTPHEADER => [
-
-            'Authorization: Bearer ' .
-            $supabaseServiceKey,
-
-            'apikey: ' .
-            $supabaseServiceKey,
-
-            'Content-Type: ' .
-            $realMimeType,
-
-            'Content-Length: ' .
-            strlen($fileData),
-
-            'x-upsert: true',
-
-            'Connection: keep-alive'
-
-        ]
 
     ]);
 
@@ -571,7 +541,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <?php include '../../assets/navbar/navbar.php'; ?>
 
 <main class="main-content">
-    <link rel="stylesheet" href="../../pages/list/seniorList.css">
     <link rel="stylesheet" href="../../pages/list/viewrecord.css">
     <section>
 

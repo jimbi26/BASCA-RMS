@@ -1,22 +1,11 @@
 document.addEventListener("DOMContentLoaded", function () {
-  /* =========================================
-       ELEMENTS
-    ========================================= */
-
   const searchInput = document.getElementById("recordSearch");
   const ageFilter = document.getElementById("ageFilter");
   const barangayFilter = document.getElementById("barangayFilter");
   const yearFilter = document.getElementById("yearFilter");
   const genderFilter = document.getElementById("genderFilter");
   const deceasedFilter = document.getElementById("deceasedFilter");
-
   const tableBody = document.getElementById("recordsTableBody");
-
-  /*
-    |--------------------------------------------------------------------------
-    | Check required elements
-    |--------------------------------------------------------------------------
-    */
 
   if (
     !searchInput ||
@@ -31,11 +20,21 @@ document.addEventListener("DOMContentLoaded", function () {
     return;
   }
 
-  /* =========================================
-       GET TABLE ROWS
-    ========================================= */
-
   const rows = Array.from(tableBody.querySelectorAll("tr[data-id]"));
+  const records = rows.map((row) => ({
+    row,
+    id: (row.dataset.id || "").toLowerCase(),
+    name: (row.dataset.name || "").toLowerCase(),
+    age: row.dataset.age || "",
+    barangay: (row.dataset.barangay || "").toLowerCase(),
+    year: row.dataset.year || "",
+    gender: (row.dataset.gender || "").toLowerCase(),
+    status: (row.dataset.status || "").toLowerCase(),
+    isDeceased: (row.dataset.isDeceased || "").toLowerCase(),
+    rrn: (row.dataset.rrn || "").toLowerCase(),
+    visible: true,
+  }));
+
   const pageSize = 100;
   let currentPage = 1;
 
@@ -44,109 +43,39 @@ document.addEventListener("DOMContentLoaded", function () {
   const nextPageBtn = document.getElementById("nextPage");
   const paginationPages = document.getElementById("paginationPages");
 
-  /* =========================================
-       FILTER FUNCTION
-    ========================================= */
-
   function filterRecords() {
     const searchValue = searchInput.value.trim().toLowerCase();
-
     const selectedAge = ageFilter.value;
-
     const selectedBarangay = barangayFilter.value.trim().toLowerCase();
-
     const selectedYear = yearFilter.value;
-
     const selectedGender = genderFilter.value.trim().toLowerCase();
-
     const showDeceased = deceasedFilter.checked;
 
     let visibleRecords = 0;
 
-    rows.forEach(function (row) {
-      /*
-            |--------------------------------------------------------------------------
-            | Get record information
-            |--------------------------------------------------------------------------
-            */
-
-      const id = (row.dataset.id || "").toLowerCase();
-
-      const name = (row.dataset.name || "").toLowerCase();
-
-      const age = row.dataset.age || "";
-
-      const barangay = (row.dataset.barangay || "").toLowerCase();
-
-      const year = row.dataset.year || "";
-
-      const gender = (row.dataset.gender || "").toLowerCase();
-
-      const status = (row.dataset.status || "").toLowerCase();
-
-      /*
-            |--------------------------------------------------------------------------
-            | SEARCH
-            |--------------------------------------------------------------------------
-            */
-
+    records.forEach((record) => {
       const matchesSearch =
         searchValue === "" ||
-        id.includes(searchValue) ||
-        name.includes(searchValue);
+        record.id.includes(searchValue) ||
+        record.name.includes(searchValue) ||
+        record.rrn.includes(searchValue);
 
-      /*
-            |--------------------------------------------------------------------------
-            | AGE
-            |--------------------------------------------------------------------------
-            */
-
-      const matchesAge = selectedAge === "" || age === selectedAge;
-
-      /*
-            |--------------------------------------------------------------------------
-            | BARANGAY
-            |--------------------------------------------------------------------------
-            */
-
+      const matchesAge = selectedAge === "" || record.age === selectedAge;
       const matchesBarangay =
-        selectedBarangay === "" || barangay === selectedBarangay;
-
-      /*
-            |--------------------------------------------------------------------------
-            | YEAR
-            |--------------------------------------------------------------------------
-            */
-
-      const matchesYear = selectedYear === "" || year === selectedYear;
-
-      /*
-            |--------------------------------------------------------------------------
-            | GENDER
-            |--------------------------------------------------------------------------
-            */
-
-      const matchesGender = selectedGender === "" || gender === selectedGender;
-
-      /*
-            |--------------------------------------------------------------------------
-            | DECEASED
-            |--------------------------------------------------------------------------
-            */
+        selectedBarangay === "" || record.barangay === selectedBarangay;
+      const matchesYear = selectedYear === "" || record.year === selectedYear;
+      const matchesGender =
+        selectedGender === "" || record.gender === selectedGender;
 
       let matchesDeceased = true;
-
       if (showDeceased) {
-        matchesDeceased = status === "deceased" || status === "dead";
+        matchesDeceased =
+          record.isDeceased === "1" ||
+          record.isDeceased === "yes" ||
+          record.isDeceased === "true";
       }
 
-      /*
-            |--------------------------------------------------------------------------
-            | FINAL FILTER
-            |--------------------------------------------------------------------------
-            */
-
-      const shouldShow =
+      record.visible =
         matchesSearch &&
         matchesAge &&
         matchesBarangay &&
@@ -154,16 +83,9 @@ document.addEventListener("DOMContentLoaded", function () {
         matchesGender &&
         matchesDeceased;
 
-      /*
-            |--------------------------------------------------------------------------
-            | STORE FILTER STATE
-            |--------------------------------------------------------------------------
-            */
+      record.row.style.display = "none";
 
-      row.dataset.visible = shouldShow ? "true" : "false";
-      row.style.display = "none";
-
-      if (shouldShow) {
+      if (record.visible) {
         visibleRecords++;
       }
     });
@@ -175,17 +97,18 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function renderPage() {
-    const visibleRows = rows.filter((row) => row.dataset.visible === "true");
-    const totalVisible = visibleRows.length;
+    const visibleRecords = records.filter((record) => record.visible);
+    const totalVisible = visibleRecords.length;
     const totalPages = Math.max(1, Math.ceil(totalVisible / pageSize));
 
     if (currentPage > totalPages) {
       currentPage = totalPages;
     }
 
-    visibleRows.forEach((row, index) => {
-      row.style.display =
-        index >= (currentPage - 1) * pageSize && index < currentPage * pageSize
+    visibleRecords.forEach((record, index) => {
+      record.row.style.display =
+        index >= (currentPage - 1) * pageSize &&
+        index < currentPage * pageSize
           ? ""
           : "none";
     });
@@ -236,9 +159,7 @@ document.addEventListener("DOMContentLoaded", function () {
   nextPageBtn.addEventListener("click", function (event) {
     event.preventDefault();
 
-    const totalVisible = rows.filter(
-      (row) => row.dataset.visible === "true",
-    ).length;
+    const totalVisible = records.filter((record) => record.visible).length;
     const totalPages = Math.max(1, Math.ceil(totalVisible / pageSize));
 
     if (currentPage < totalPages) {
@@ -246,10 +167,6 @@ document.addEventListener("DOMContentLoaded", function () {
       renderPage();
     }
   });
-
-  /* =========================================
-       UPDATE RECORD COUNT
-    ========================================= */
 
   function updateRecordCount(count) {
     const recordCount = document.querySelector(".record-count");
@@ -266,19 +183,13 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  /* =========================================
-       NO RESULTS MESSAGE
-    ========================================= */
-
   function showNoResultsMessage(count) {
     let noResultsRow = document.getElementById("noFilterResults");
 
     if (count === 0) {
       if (!noResultsRow) {
         noResultsRow = document.createElement("tr");
-
         noResultsRow.id = "noFilterResults";
-
         noResultsRow.innerHTML = `
                     <td colspan="7" class="no-results">
                         <i class="fa-solid fa-magnifying-glass"></i>
@@ -286,35 +197,19 @@ document.addEventListener("DOMContentLoaded", function () {
                         No senior records match your filters.
                     </td>
                 `;
-
         tableBody.appendChild(noResultsRow);
       }
-    } else {
-      if (noResultsRow) {
-        noResultsRow.remove();
-      }
+    } else if (noResultsRow) {
+      noResultsRow.remove();
     }
   }
 
-  /* =========================================
-       EVENT LISTENERS
-    ========================================= */
-
   searchInput.addEventListener("input", filterRecords);
-
   ageFilter.addEventListener("change", filterRecords);
-
   barangayFilter.addEventListener("change", filterRecords);
-
   yearFilter.addEventListener("change", filterRecords);
-
   genderFilter.addEventListener("change", filterRecords);
-
   deceasedFilter.addEventListener("change", filterRecords);
-
-  /* =========================================
-       INITIAL FILTER
-    ========================================= */
 
   filterRecords();
 });
@@ -343,8 +238,6 @@ function deleteSenior(seniorId) {
     .then((data) => {
       if (data.success) {
         alert(data.message);
-
-        // Find and remove the deleted row
         const row = document.querySelector(
           'tr[data-id="' + CSS.escape(seniorId) + '"]',
         );
@@ -353,14 +246,11 @@ function deleteSenior(seniorId) {
           row.remove();
         }
 
-        // Update the record count
         const recordCount = document.querySelector(".record-count");
-
         if (recordCount) {
           const remainingRows = document.querySelectorAll(
             "#recordsTableBody tr[data-id]",
           ).length;
-
           recordCount.textContent =
             "Showing " +
             remainingRows +
@@ -373,7 +263,6 @@ function deleteSenior(seniorId) {
     })
     .catch((error) => {
       console.error("Delete error:", error);
-
       alert("An error occurred while deleting the record.");
     });
 }
