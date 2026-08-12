@@ -1,0 +1,1428 @@
+.main-content {
+  margin-left: 300px;
+  min-height: 100vh;
+  padding: 115px 35px 30px;
+}
+
+/* =========================================
+   RECORD VIEW
+========================================= */
+
+.record-view {
+  width: 100%;
+}
+
+/* =========================================
+   HEADER
+========================================= */
+.record-view-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  width: 100%;
+}
+
+.record-view-right-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.record-view-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  margin-bottom: 24px;
+}
+
+.record-view-header h2 {
+  margin: 0 0 5px;
+
+  font-size: 24px;
+  font-weight: 700;
+  color: #222;
+}
+
+.record-view-header p {
+  margin: 0;
+
+  font-size: 15px;
+  color: #777;
+}
+/* =========================================
+   RRN - ADD BUTTON
+========================================= */
+
+.info-value {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.not-provided {
+  color: #777;
+  font-style: italic;
+}
+/* =========================================
+   ADD RRN MODAL
+========================================= */
+
+.rrn-modal-overlay {
+  position: fixed;
+  inset: 0;
+
+  display: none;
+  align-items: center;
+  justify-content: center;
+
+  background: rgba(0, 0, 0, 0.45);
+
+  z-index: 9999;
+}
+
+.rrn-modal-overlay.active {
+  display: flex;
+}
+
+/* Modal */
+
+.rrn-modal {
+  width: 450px;
+  max-width: calc(100% - 40px);
+
+  background: #ffffff;
+
+  border-radius: 10px;
+
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+
+  overflow: hidden;
+
+  font-family: "Times New Roman", serif;
+}
+
+/* Header */
+
+.rrn-modal-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+
+  padding: 22px 24px;
+
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.rrn-modal-header h2 {
+  margin: 0 0 5px;
+
+  font-size: 24px;
+  color: #222;
+}
+
+.rrn-modal-header p {
+  margin: 0;
+
+  font-size: 15px;
+  color: #777;
+}
+
+/* Close */
+
+.rrn-modal-close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 34px;
+  height: 34px;
+
+  border: none;
+  border-radius: 6px;
+
+  background: transparent;
+
+  color: #777;
+
+  font-size: 20px;
+
+  cursor: pointer;
+
+  transition: 0.2s ease;
+}
+
+.rrn-modal-close:hover {
+  background: #f1f1f1;
+  color: #333;
+}
+
+/* Form */
+
+.rrn-modal form {
+  padding: 24px;
+}
+
+.rrn-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.rrn-form-group label {
+  font-size: 17px;
+  font-weight: bold;
+  color: #333;
+}
+
+.rrn-form-group input {
+  width: 100%;
+  box-sizing: border-box;
+
+  padding: 12px 14px;
+
+  border: 1px solid #ccc;
+  border-radius: 6px;
+
+  font-family: "Times New Roman", serif;
+  font-size: 17px;
+
+  outline: none;
+
+  transition: 0.2s ease;
+}
+
+.rrn-form-group input:focus {
+  border-color: #3272c7;
+
+  box-shadow: 0 0 0 3px rgba(50, 114, 199, 0.12);
+}
+
+/* Modal Actions */
+
+.rrn-modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+
+  margin-top: 24px;
+}
+
+/* Cancel */
+
+.rrn-cancel-button {
+  padding: 10px 18px;
+
+  border: 1px solid #ccc;
+  border-radius: 6px;
+
+  background: #ffffff;
+  color: #555;
+
+  font-family: "Times New Roman", serif;
+  font-size: 16px;
+  font-weight: bold;
+
+  cursor: pointer;
+
+  transition: 0.2s ease;
+}
+
+.rrn-cancel-button:hover {
+  background: #f3f3f3;
+}
+
+/* Save */
+
+.rrn-save-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+
+  padding: 10px 18px;
+
+  border: 1px solid #3272c7;
+  border-radius: 6px;
+
+  background: #3272c7;
+  color: #ffffff;
+
+  font-family: "Times New Roman", serif;
+  font-size: 16px;
+  font-weight: bold;
+
+  cursor: pointer;
+
+  transition: 0.2s ease;
+}
+
+.rrn-save-button:hover {
+  background: #245da8;
+  border-color: #245da8;
+}
+/* Add RRN Button */
+
+.add-rrn-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+
+  padding: 7px 13px;
+
+  background-color: #3272c7;
+  color: #ffffff;
+
+  border: 1px solid #3272c7;
+  border-radius: 6px;
+
+  font-family: "Times New Roman", serif;
+  font-size: 18px;
+  font-weight: bold;
+
+  text-decoration: none;
+
+  cursor: pointer;
+
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+/* Icon */
+
+.add-rrn-button i {
+  font-size: 12px;
+}
+
+/* Hover */
+
+.add-rrn-button:hover {
+  background-color: #245da8;
+  border-color: #245da8;
+
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.12);
+
+  transform: translateY(-1px);
+}
+
+/* Active */
+
+.add-rrn-button:active {
+  transform: translateY(0);
+  box-shadow: none;
+}
+
+/* =========================================
+   BACK BUTTON
+========================================= */
+.delete-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  padding: 10px 16px;
+  min-height: 46px;
+
+  border: 1px solid #a3a5a5;
+  border-radius: 8px;
+
+  background: #ffffff;
+  color: rgb(17, 17, 18);
+
+  font-size: 20px;
+  font-weight: 600;
+
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.delete-button:hover {
+  background: #bb2d3b;
+  color: #ffffff;
+}
+
+.delete-button i {
+  font-size: 14px;
+}
+.back-button,
+.print-button,
+.delete-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  padding: 10px 16px;
+  min-height: 46px;
+
+  border: 1px solid #a3a5a5;
+  border-radius: 8px;
+
+  background: #ffffff;
+  color: rgb(17, 17, 18);
+
+  font-size: 20px;
+  font-weight: 600;
+
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+/* Back Button */
+
+.back-button {
+  text-decoration: none;
+}
+
+/* Print Button */
+
+.print-button {
+  margin-left: 10px;
+
+  cursor: pointer;
+
+  background: #fff;
+  color: #1976d2;
+
+  border-color: #1976d2;
+}
+
+/* Print Icon */
+
+.print-button i {
+  color: #1976d2;
+}
+
+/* Hover */
+
+.back-button:hover {
+  background: #f5f5f5;
+}
+
+.print-button:hover {
+  background: #f0f7ff;
+  color: #1565c0;
+}
+
+.print-button:hover i {
+  color: #1565c0;
+}
+
+.edit-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  padding: 10px 16px;
+  min-height: 46px;
+
+  border: 1px solid #a3a5a5;
+  border-radius: 8px;
+
+  background: #ffffff;
+  color: rgb(17, 17, 18);
+
+  font-size: 20px;
+  font-weight: 600;
+
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.edit-button:hover {
+  background: #679bcf;
+  border-color: #eff2f5;
+  color: rgb(241, 241, 244);
+}
+
+.inline-edit-input {
+  flex: 1 1 100%;
+  width: 100%;
+  min-width: 220px;
+  min-height: 42px;
+  box-sizing: border-box;
+
+  padding: 12px 14px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+
+  font-size: 15px;
+  color: #222;
+  background: #fff;
+
+  outline: none;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.inline-edit-input:focus {
+  border-color: #1976d2;
+  box-shadow: 0 0 0 3px rgba(25, 118, 210, 0.12);
+}
+
+.editing-active .print-button,
+.editing-active .delete-button:not(#cancelEditButton) {
+  display: none !important;
+}
+
+.editing-active .edit-button {
+  background: #2e7d32;
+  border-color: #2e7d32;
+}
+
+.editing-active .edit-button:hover {
+  background: #27632a;
+  border-color: #27632a;
+}
+/* =========================================
+   ID SWITCH CARD
+========================================= */
+
+.id-switch-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 20px;
+
+  padding: 18px 20px;
+
+  margin-bottom: 20px;
+
+  background: #fff;
+
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+}
+
+/* =========================================
+   SWITCH LABEL
+========================================= */
+
+.id-switch-label {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.id-switch-label > i {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 38px;
+  height: 38px;
+
+  border-radius: 8px;
+
+  background: #eef4ff;
+  color: #2563eb;
+
+  font-size: 20px;
+}
+
+.id-switch-label strong {
+  display: block;
+
+  font-size: 15px;
+  color: #222;
+}
+
+.id-switch-label span {
+  display: block;
+
+  margin-top: 3px;
+
+  font-size: 13px;
+  color: #888;
+}
+
+/* =========================================
+   SWITCH
+========================================= */
+
+.id-switch {
+  display: flex;
+
+  padding: 4px;
+
+  background: #f1f3f5;
+
+  border-radius: 9px;
+}
+
+.id-switch-option {
+  border: none;
+
+  padding: 9px 16px;
+
+  border-radius: 6px;
+
+  background: transparent;
+
+  color: #666;
+
+  font-family: inherit;
+  font-size: 20px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: 0.2s;
+}
+
+.id-switch-option:hover {
+  color: #222;
+}
+
+.id-switch-option.active {
+  background: #fff;
+
+  color: #2563eb;
+
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* =========================================
+   RECORD LAYOUT
+========================================= */
+
+.record-layout {
+  display: grid;
+
+  grid-template-columns: 260px 1fr;
+
+  gap: 20px;
+
+  margin-bottom: 20px;
+}
+
+/* =========================================
+   PHOTO CARD
+========================================= */
+
+.record-photo-card {
+  background: #fff;
+
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+
+  padding: 22px;
+
+  text-align: center;
+}
+
+.photo-card-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 8px;
+
+  margin-bottom: 20px;
+
+  font-size: 15px;
+  font-weight: 600;
+  color: #333;
+}
+
+/* =========================================
+   2x2 PHOTO
+========================================= */
+
+.photo-container {
+  width: 2in;
+  height: 2in;
+
+  margin: 0 auto 18px;
+
+  overflow: hidden;
+
+  border: 1px solid #ddd;
+
+  background: #f5f5f5;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.photo-container img {
+  width: 100%;
+  height: 100%;
+
+  object-fit: contain;
+  object-position: center;
+
+  display: block;
+}
+
+.senior-photo {
+  width: 100%;
+  height: 100%;
+
+  display: block;
+
+  object-fit: cover;
+}
+
+/* =========================================
+   PHOTO NAME
+========================================= */
+
+.photo-name strong {
+  display: block;
+
+  font-size: 20px;
+  color: #222;
+}
+
+.photo-name span {
+  display: block;
+
+  margin-top: 4px;
+
+  font-size: 13px;
+  color: #888;
+}
+
+/* =========================================
+   INFORMATION CARD
+========================================= */
+
+.record-info-card {
+  background: #fff;
+
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+
+  padding: 24px;
+}
+
+/* =========================================
+   SECTION HEADER
+========================================= */
+
+.record-section-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+
+  padding-bottom: 18px;
+
+  margin-bottom: 20px;
+
+  border-bottom: 1px solid #eee;
+}
+
+.record-section-header h3 {
+  margin: 0 0 5px;
+
+  font-size: 19px;
+  color: #222;
+}
+
+.record-section-header p {
+  margin: 0;
+
+  font-size: 13px;
+  color: #888;
+}
+
+/* =========================================
+   STATUS
+========================================= */
+
+.status-badge {
+  padding: 6px 12px;
+
+  border-radius: 20px;
+
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.status-badge.active {
+  background: #e9f8ef;
+  color: #198754;
+}
+
+/* =========================================
+   INFORMATION GRID
+========================================= */
+
+.record-info-grid {
+  display: grid;
+
+  grid-template-columns: repeat(2, 1fr);
+
+  gap: 20px 30px;
+}
+
+.info-item {
+  display: flex;
+  flex-direction: column;
+
+  gap: 5px;
+}
+
+.info-label {
+  font-size: 15px;
+  font-weight: 500;
+  color: #888;
+}
+
+.info-value {
+  font-size: 20px;
+  font-weight: 600;
+  color: #222;
+}
+
+/* =========================================
+   ID PREVIEW CARD
+========================================= */
+
+.id-preview-card {
+  background: #fff;
+
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+
+  padding: 24px;
+}
+
+/* =========================================
+   ID PREVIEW HEADER
+========================================= */
+
+.id-preview-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding-bottom: 18px;
+  margin-bottom: 20px;
+
+  border-bottom: 1px solid #eee;
+}
+
+.id-preview-header h3 {
+  margin: 0 0 5px;
+
+  font-size: 18px;
+  color: #222;
+}
+
+.id-preview-header p {
+  margin: 0;
+
+  font-size: 13px;
+  color: #888;
+}
+
+.document-badge {
+  padding: 7px 13px;
+
+  border-radius: 20px;
+
+  background: #eef4ff;
+  color: #2563eb;
+
+  font-size: 20px;
+  font-weight: 700;
+}
+
+/* =========================================
+   ID IMAGE
+========================================= */
+
+.id-image-container {
+  width: 210mm;
+  height: 297mm;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin: 0 auto;
+  padding: 10mm;
+
+  box-sizing: border-box;
+
+  border-radius: 8px;
+  background: #f7f7f7;
+
+  overflow: hidden;
+}
+
+.id-image-container img {
+  width: 100%;
+  height: 100%;
+
+  display: block;
+
+  object-fit: contain;
+
+  border-radius: 5px;
+}
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 900px) {
+  .record-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .record-photo-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .id-switch-card {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .id-switch {
+    width: 100%;
+  }
+
+  .id-switch-option {
+    flex: 1;
+  }
+}
+
+@media (max-width: 600px) {
+  .record-view-header {
+    align-items: flex-start;
+    flex-direction: column;
+
+    gap: 15px;
+  }
+
+  .record-info-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .id-switch {
+    flex-direction: column;
+  }
+
+  .id-switch-option {
+    width: 100%;
+  }
+}
+
+/* FOR ADD NEW SENIOR */
+
+/* =========================================
+   PAGE CONTENT
+========================================= */
+
+.back-button-add-new {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+
+  padding: 10px 18px;
+
+  background: #fff;
+  color: #333;
+
+  border: 1px solid #d8d8d8;
+  border-radius: 8px;
+
+  text-decoration: none;
+
+  font-size: 20px;
+  font-weight: 600;
+
+  transition: 0.2s ease;
+}
+
+.back-button-add-new:hover {
+  background: #f5f5f5;
+  border-color: #c8c8c8;
+}
+/* =========================================
+   PAGE HEADER
+========================================= */
+
+.page-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+
+  margin-bottom: 25px;
+}
+
+.page-header h2 {
+  margin: 0 0 5px;
+
+  font-size: 24px;
+  font-weight: 700;
+
+  color: #222;
+}
+
+.page-header p {
+  margin: 0;
+
+  font-size: 20px;
+  color: #777;
+}
+
+/* =========================================
+   FORM CARD
+========================================= */
+
+.form-card {
+  background: #fff;
+
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+
+  padding: 25px;
+
+  margin-bottom: 20px;
+}
+
+/* =========================================
+   CARD HEADER
+========================================= */
+
+.card-header {
+  display: flex;
+  align-items: center;
+
+  gap: 12px;
+
+  padding-bottom: 18px;
+  margin-bottom: 22px;
+
+  border-bottom: 1px solid #eeeeee;
+}
+
+.card-icon {
+  width: 42px;
+  height: 42px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: #eef5ff;
+  color: #1976d2;
+
+  border-radius: 8px;
+
+  font-size: 17px;
+}
+
+.card-header h3 {
+  margin: 0 0 4px;
+
+  font-size: 17px;
+  font-weight: 700;
+
+  color: #222;
+}
+
+.card-header p {
+  margin: 0;
+
+  font-size: 13px;
+  color: #888;
+}
+
+/* =========================================
+   FORM GRID
+========================================= */
+
+.form-grid {
+  display: grid;
+
+  grid-template-columns: repeat(2, 1fr);
+
+  gap: 20px;
+}
+
+/* =========================================
+   FORM GROUP
+========================================= */
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+
+  gap: 7px;
+}
+
+.form-group label {
+  font-size: 20px;
+  font-weight: 600;
+
+  color: #333;
+}
+
+.form-group label span {
+  color: #e53935;
+}
+
+/* =========================================
+   INPUT
+========================================= */
+
+.form-group input[type="text"],
+.form-group input[type="date"],
+.form-group select {
+  width: 100%;
+  height: 43px;
+
+  padding: 0 12px;
+
+  border: 1px solid #d9d9d9;
+  border-radius: 7px;
+
+  background: #fff;
+
+  outline: none;
+
+  font-family: inherit;
+  font-size: 14px;
+
+  color: #333;
+
+  transition: 0.2s ease;
+}
+
+.form-group input[type="text"]:focus,
+.form-group input[type="date"]:focus,
+.form-group select:focus {
+  border-color: #1976d2;
+
+  box-shadow: 0 0 0 3px rgba(25, 118, 210, 0.08);
+}
+
+/* =========================================
+   RADIO BUTTON
+========================================= */
+
+.radio-group {
+  display: flex;
+  align-items: center;
+
+  gap: 25px;
+
+  min-height: 43px;
+}
+
+.radio-option {
+  display: flex;
+  align-items: center;
+
+  gap: 7px;
+
+  cursor: pointer;
+
+  font-size: 22px !important;
+  font-weight: 500 !important;
+
+  color: #444 !important;
+}
+
+.radio-option input {
+  width: 16px;
+  height: 16px;
+
+  margin: 0;
+
+  accent-color: #1976d2;
+
+  cursor: pointer;
+}
+
+/* =========================================
+   PROFILE PHOTO UPLOAD
+========================================= */
+
+.upload-box {
+  min-height: 170px;
+
+  padding: 25px;
+
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 8px;
+
+  border: 2px dashed #d6d6d6;
+  border-radius: 9px;
+
+  background: #fafafa;
+
+  text-align: center;
+
+  transition: 0.2s ease;
+}
+
+.upload-box:hover {
+  border-color: #1976d2;
+
+  background: #f8fbff;
+}
+
+.upload-box > i {
+  font-size: 30px;
+
+  color: #1976d2;
+
+  margin-bottom: 5px;
+}
+
+.upload-box strong {
+  font-size: 14px;
+
+  color: #333;
+}
+
+.upload-box span {
+  font-size: 12px;
+
+  color: #888;
+}
+
+.upload-box small {
+  font-size: 11px;
+
+  color: #aaa;
+}
+
+.upload-box input[type="file"] {
+  margin-top: 8px;
+
+  font-size: 12px;
+}
+
+/* =========================================
+   DOCUMENT GRID
+========================================= */
+
+.document-grid {
+  display: grid;
+
+  grid-template-columns: repeat(3, 1fr);
+
+  gap: 18px;
+}
+
+/* =========================================
+   DOCUMENT UPLOAD
+========================================= */
+
+.document-upload {
+  padding: 25px 18px;
+
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+
+  text-align: center;
+
+  background: #fafafa;
+
+  border: 1px solid #e2e2e2;
+  border-radius: 9px;
+
+  transition: 0.2s ease;
+}
+
+.document-upload:hover {
+  border-color: #1976d2;
+
+  background: #f8fbff;
+}
+
+.document-icon {
+  width: 50px;
+  height: 50px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-bottom: 12px;
+
+  border-radius: 9px;
+
+  background: #eef5ff;
+  color: #1976d2;
+
+  font-size: 20px;
+}
+
+.document-upload h4 {
+  margin: 0 0 5px;
+
+  font-size: 14px;
+  font-weight: 700;
+
+  color: #333;
+}
+
+.document-upload p {
+  margin: 0 0 15px;
+
+  font-size: 12px;
+
+  color: #888;
+}
+
+.document-upload input[type="file"] {
+  width: 100%;
+
+  padding: 8px;
+
+  border: 1px solid #ddd;
+  border-radius: 6px;
+
+  background: #fff;
+
+  font-size: 11px;
+
+  cursor: pointer;
+}
+
+/* =========================================
+   FORM ACTIONS
+========================================= */
+
+.form-actions {
+  display: flex;
+
+  align-items: center;
+  justify-content: flex-end;
+
+  gap: 10px;
+
+  margin-top: 25px;
+}
+
+/* =========================================
+   CANCEL BUTTON
+========================================= */
+
+.cancel-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 43px;
+
+  padding: 0 18px;
+
+  border: 1px solid #d5d5d5;
+  border-radius: 7px;
+
+  background: #fff;
+  color: #555;
+
+  text-decoration: none;
+
+  font-size: 20px;
+  font-weight: 600;
+
+  transition: 0.2s ease;
+}
+
+.cancel-button:hover {
+  background: #f5f5f5;
+}
+
+/* =========================================
+   SAVE BUTTON
+========================================= */
+
+.save-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 8px;
+
+  min-height: 43px;
+
+  padding: 0 20px;
+
+  border: none;
+  border-radius: 7px;
+
+  background: #1976d2;
+  color: #fff;
+
+  font-family: inherit;
+
+  font-size: 20px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: 0.2s ease;
+}
+
+.save-button:hover {
+  background: #1565c0;
+}
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 900px) {
+  .document-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 700px) {
+  .page-content {
+    padding: 20px 15px;
+  }
+
+  .page-header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .form-card {
+    padding: 20px;
+  }
+
+  .form-actions {
+    flex-direction: column-reverse;
+  }
+
+  .cancel-button,
+  .save-button {
+    width: 100%;
+  }
+}

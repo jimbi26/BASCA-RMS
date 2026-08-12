@@ -1,0 +1,555 @@
+.main-content {
+  margin-left: 300px;
+  min-height: 100vh;
+  padding: 115px 35px 30px;
+}
+
+/* =========================================
+           EMPTY / VIEW ALL
+        ========================================= */
+
+.table-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 16px 24px;
+}
+
+.record-count {
+  color: #777;
+
+  font-size: 14px;
+}
+
+/* =========================================
+   PAGINATION
+========================================= */
+
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 20px;
+}
+
+#paginationPages {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.pagination a {
+  color: #222;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+/* Previous / Next */
+.pagination-btn {
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  background: #fff;
+
+  display: flex;
+  align-items: center;
+  gap: 6px;
+
+  transition: 0.2s ease;
+}
+
+.pagination-btn:hover {
+  background: #f5f5f5;
+}
+
+/* Page numbers */
+.pagination-page {
+  width: 34px;
+  height: 34px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  background: #fff;
+
+  transition: 0.2s ease;
+}
+
+.pagination-page:hover {
+  background: #f5f5f5;
+}
+
+/* Active page */
+.pagination-page.active {
+  background: #222;
+  color: #fff;
+  border-color: #222;
+}
+
+/* Disabled */
+.pagination-btn.disabled {
+  color: #aaa;
+  background: #f8f8f8;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* =========================================
+           SEARCH SECTION
+        ========================================= */
+
+.content-card {
+  background: #ffffff;
+
+  border: 1px solid #dedede;
+
+  border-radius: 9px;
+
+  margin-bottom: 30px;
+
+  overflow: hidden;
+}
+
+.content-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 20px 24px;
+
+  border-bottom: 1px solid #e1e1e1;
+}
+
+.content-card-header h2 {
+  margin: 0;
+
+  font-size: 22px;
+}
+
+.content-card-header p {
+  margin: 4px 0 0;
+
+  color: #777;
+
+  font-size: 14px;
+}
+
+/* =========================================
+           TABLE
+        ========================================= */
+
+.table-wrapper {
+  width: 100%;
+
+  overflow-x: auto;
+}
+
+.records-table {
+  width: 100%;
+
+  border-collapse: collapse;
+
+  min-width: 850px;
+}
+
+.records-table th {
+  padding: 17px 20px;
+
+  background: #f5f5f5;
+
+  border-bottom: 1px solid #dddddd;
+
+  text-align: left;
+
+  font-size: 17px;
+
+  color: #444;
+}
+
+.records-table td {
+  padding: 18px 20px;
+
+  border-bottom: 1px solid #eeeeee;
+
+  font-size: 20px;
+
+  color: #333;
+}
+
+.records-table tbody tr:hover {
+  background: #fafafa;
+}
+
+.senior-name {
+  font-weight: 700;
+
+  color: #222;
+}
+
+.status {
+  display: inline-block;
+
+  padding: 5px 10px;
+
+  border-radius: 20px;
+
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.status-active {
+  background: #e8f5e9;
+
+  color: #2e7d32;
+}
+
+.status-inactive {
+  background: #eeeeee;
+
+  color: #666666;
+}
+
+.action-button {
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 34px;
+  height: 34px;
+
+  border: 1px solid #d5d5d5;
+
+  border-radius: 6px;
+
+  background: #ffffff;
+
+  color: #333;
+
+  text-decoration: none;
+
+  transition: 0.2s ease;
+}
+
+.action-button:hover {
+  background: #222;
+  color: #ffffff;
+  border-color: #222;
+}
+
+.delete-action:hover {
+  background: #dc2626;
+  color: #ffffff;
+  border-color: #dc2626;
+}
+
+/* Search */
+/* =========================================
+   SEARCH / FILTER SECTION
+========================================= */
+
+.records-filter {
+  display: flex;
+  align-items: flex-end;
+  gap: 12px;
+
+  padding: 18px 24px;
+
+  background: #fafafa;
+
+  border-bottom: 1px solid #e1e1e1;
+
+  flex-wrap: wrap;
+}
+
+#recordSearch {
+  font-size: 20px;
+}
+
+#recordSearch::placeholder {
+  font-size: 20px;
+}
+/* =========================================
+   SEARCH
+========================================= */
+
+.filter-search {
+  position: relative;
+
+  flex: 1;
+  min-width: 260px;
+}
+
+.filter-search i {
+  position: absolute;
+
+  left: 13px;
+  top: 50%;
+
+  transform: translateY(-50%);
+
+  color: #888;
+
+  font-size: 20px;
+}
+
+.filter-search input {
+  width: 100%;
+
+  height: 43px;
+
+  padding: 0 14px 0 38px;
+
+  border: 1px solid #d5d5d5;
+
+  border-radius: 6px;
+
+  background: #ffffff;
+
+  color: #222;
+
+  font-family: inherit;
+
+  font-size: 20px;
+
+  outline: none;
+
+  transition: 0.2s ease;
+}
+
+.filter-search input:focus {
+  border-color: #999;
+
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.04);
+}
+
+.filter-search input::placeholder {
+  color: #999;
+}
+
+/* =========================================
+   FILTER GROUP
+========================================= */
+
+.filter-group {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 5px;
+
+  min-width: 130px;
+}
+
+.filter-group label {
+  font-size: 20px;
+
+  font-weight: 600;
+
+  color: #555;
+}
+
+.filter-group select {
+  height: 40px;
+
+  min-width: 130px;
+
+  padding: 0 30px 0 12px;
+
+  border: 1px solid #d5d5d5;
+
+  border-radius: 6px;
+
+  background-color: #ffffff;
+
+  color: #333;
+
+  font-family: inherit;
+
+  font-size: 14px;
+
+  cursor: pointer;
+
+  outline: none;
+
+  transition: 0.2s ease;
+}
+
+.filter-group select:focus {
+  border-color: #999;
+
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.04);
+}
+
+/* =========================================
+   DECEASED CHECKBOX
+========================================= */
+
+.filter-checkbox {
+  height: 40px;
+
+  display: flex;
+
+  align-items: center;
+
+  padding: 0 8px;
+}
+
+.filter-checkbox label {
+  display: flex;
+
+  align-items: center;
+
+  gap: 8px;
+
+  color: #555;
+
+  font-size: 14px;
+
+  font-weight: 600;
+
+  cursor: pointer;
+
+  white-space: nowrap;
+}
+
+.filter-checkbox input {
+  width: 16px;
+  height: 16px;
+
+  margin: 0;
+
+  cursor: pointer;
+
+  accent-color: #222;
+}
+
+/* =========================================
+   NO RESULTS
+========================================= */
+
+.no-results {
+  text-align: center;
+
+  padding: 30px !important;
+
+  color: #777;
+
+  font-size: 15px;
+}
+/* =========================================
+   ADD BUTTON
+========================================= */
+
+.add-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+
+  padding: 12px 18px;
+
+  background: #2563eb;
+  color: #ffffff;
+
+  border: none;
+  border-radius: 8px;
+
+  font-size: 20px;
+  font-weight: 600;
+
+  text-decoration: none;
+  cursor: pointer;
+
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
+
+  transition: all 0.2s ease;
+}
+
+.add-button i {
+  font-size: 14px;
+}
+
+.add-button:hover {
+  background: #1d4ed8;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
+}
+
+.add-button:active {
+  transform: translateY(0);
+}
+
+@media (max-width: 1000px) {
+  .filter-search {
+    flex-basis: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .records-filter {
+    align-items: stretch;
+
+    padding: 16px;
+  }
+
+  .filter-search {
+    min-width: 100%;
+  }
+
+  .filter-group {
+    flex: 1;
+
+    min-width: 140px;
+  }
+
+  .filter-group select {
+    width: 100%;
+  }
+
+  .filter-checkbox {
+    height: 40px;
+  }
+}
+
+@media (max-width: 480px) {
+  .records-filter {
+    flex-direction: column;
+  }
+
+  .filter-search {
+    min-width: 100%;
+  }
+
+  .filter-group {
+    width: 100%;
+  }
+
+  .filter-group select {
+    width: 100%;
+  }
+
+  .filter-checkbox {
+    padding-left: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .main-content {
+    margin-left: 0;
+
+    padding: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .main-content {
+    padding: 15px;
+  }
+}
