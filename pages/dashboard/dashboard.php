@@ -3,7 +3,10 @@
 // DASHBOARD.PHP
 // =========================================
 
-// $baseUrl = getenv('BASE_URL') ?: 'https://basca-rms.onrender.com/';// Base URL for the application (use env on Vercel)
+if (!isset($baseUrl)) {
+    // Allow overriding the base URL via the BASE_URL environment variable (Vercel).
+    $baseUrl = getenv('BASE_URL') ?: '';
+}
 
 include '../../config/db.php';
 
