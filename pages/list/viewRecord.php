@@ -47,6 +47,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_record'])) {
    UPDATE SENIOR CITIZEN
 ========================================= */
 
+/* =========================================
+   UPDATE SENIOR CITIZEN
+========================================= */
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_record'])) {
 
     $existingSeniorId = $_POST['existing_senior_id'] ?? null;
@@ -56,62 +60,199 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_record'])) {
         die("Invalid senior citizen ID.");
     }
 
-    // Collect editable fields
-    $senior_id = $newSeniorId ?: $existingSeniorId;
-    $rrn = $_POST['rrn'] ?? null;
-    $birth_date = $_POST['birth_date'] ?? null;
-    $age = $_POST['age'] ?? null;
-    $first_name = $_POST['first_name'] ?? null;
-    $middle_name = $_POST['middle_name'] ?? null;
-    $last_name = $_POST['last_name'] ?? null;
-    $sex = $_POST['sex'] ?? null;
-    $purok = $_POST['purok'] ?? null;
-    $barangay = $_POST['barangay'] ?? null;
-    $contact_number = $_POST['contact_number'] ?? null;
-    $status = $_POST['status'] ?? null;
+    /* =========================================
+       PERSONAL INFORMATION
+    ========================================= */
 
-    // If the admin only edited age, derive a birth date from it.
-    if (empty($birth_date) && !empty($age) && is_numeric($age)) {
-        $today = new DateTime();
-        $today->modify('-' . intval($age) . ' years');
-        $birth_date = $today->format('Y-m-d');
-    }
+    $senior_id = !empty($newSeniorId)
+        ? trim($newSeniorId)
+        : $existingSeniorId;
 
-    // Map incoming is_deceased to enum labels expected by the DB (use 'Yes' / 'No')
+    $rrn = !empty($_POST['rrn'])
+        ? trim($_POST['rrn'])
+        : null;
+
+    $birth_date = !empty($_POST['birth_date'])
+        ? $_POST['birth_date']
+        : null;
+
+    $first_name = !empty($_POST['first_name'])
+        ? trim($_POST['first_name'])
+        : null;
+
+    $middle_name = !empty($_POST['middle_name'])
+        ? trim($_POST['middle_name'])
+        : null;
+
+    $last_name = !empty($_POST['last_name'])
+        ? trim($_POST['last_name'])
+        : null;
+
+    $sex = !empty($_POST['sex'])
+        ? trim($_POST['sex'])
+        : null;
+
+    $purok = !empty($_POST['purok'])
+        ? trim($_POST['purok'])
+        : null;
+
+    $barangay = !empty($_POST['barangay'])
+        ? trim($_POST['barangay'])
+        : null;
+
+    $contact_number = !empty($_POST['contact_number'])
+        ? trim($_POST['contact_number'])
+        : null;
+
+    $status = !empty($_POST['status'])
+        ? trim($_POST['status'])
+        : null;
+
+
+    /* =========================================
+       SENIOR CITIZEN INFORMATION
+    ========================================= */
+
+    $pension = !empty($_POST['pension'])
+        ? trim($_POST['pension'])
+        : null;
+
+    $philhealth_number = !empty($_POST['philhealth_number'])
+        ? trim($_POST['philhealth_number'])
+        : null;
+
+    $dependency = !empty($_POST['dependency'])
+        ? trim($_POST['dependency'])
+        : null;
+
+    $housing = !empty($_POST['housing'])
+        ? trim($_POST['housing'])
+        : null;
+
+    $health_problems = !empty($_POST['health_problems'])
+        ? trim($_POST['health_problems'])
+        : null;
+
+    $medicines = !empty($_POST['medicines'])
+        ? trim($_POST['medicines'])
+        : null;
+
+    $disability = !empty($_POST['disability'])
+        ? trim($_POST['disability'])
+        : null;
+
+
+    /* =========================================
+       IS DECEASED
+    ========================================= */
+
     if (isset($_POST['is_deceased'])) {
+
         $rawIsDeceased = (string) $_POST['is_deceased'];
-        $is_deceased = (in_array($rawIsDeceased, ['1', 'true', 'yes', 'Yes', 'TRUE', 'YES'], true)) ? 'Yes' : 'No';
+
+        $is_deceased = in_array(
+            $rawIsDeceased,
+            ['1', 'true', 'yes', 'Yes', 'TRUE', 'YES'],
+            true
+        )
+            ? 'Yes'
+            : 'No';
+
     } else {
-        // keep existing value if not provided
+
         $is_deceased = null;
+
     }
+
+
+    /* =========================================
+       UPDATE DATABASE
+    ========================================= */
 
     try {
 
-        $updateStmt = $pdo->prepare("\n            UPDATE senior_citizens SET\n                senior_id = ?,\n                rrn = ?,\n                birth_date = ?,\n                first_name = ?,\n                middle_name = ?,\n                last_name = ?,\n                sex = ?,\n                purok = ?,\n                barangay = ?,\n                contact_number = ?,\n                status = ?,\n                is_deceased = ?\n            WHERE senior_id = ?\n        ");
+        $updateStmt = $pdo->prepare("
+            UPDATE senior_citizens
+            SET
+                senior_id = ?,
+                rrn = ?,
+                birth_date = ?,
+                first_name = ?,
+                middle_name = ?,
+                last_name = ?,
+                sex = ?,
+                purok = ?,
+                barangay = ?,
+                contact_number = ?,
+                status = ?,
+
+                pension = ?,
+                philhealth_number = ?,
+                dependency = ?,
+                housing = ?,
+                health_problems = ?,
+                medicines = ?,
+                disability = ?,
+
+                is_deceased = ?
+
+            WHERE senior_id = ?
+        ");
 
         $updateStmt->execute([
-            $senior_id ?: $existingSeniorId,
-            $rrn ?: null,
-            $birth_date ?: null,
-            $first_name ?: null,
-            $middle_name ?: null,
-            $last_name ?: null,
-            $sex ?: null,
-            $purok ?: null,
-            $barangay ?: null,
-            $contact_number ?: null,
-            $status ?: null,
+
+            // Personal Information
+            $senior_id,
+            $rrn,
+            $birth_date,
+            $first_name,
+            $middle_name,
+            $last_name,
+            $sex,
+            $purok,
+            $barangay,
+            $contact_number,
+            $status,
+
+            // Senior Citizen Information
+            $pension,
+            $philhealth_number,
+            $dependency,
+            $housing,
+            $health_problems,
+            $medicines,
+            $disability,
+
+            // Deceased
             $is_deceased,
-            $existingSeniorId,
+
+            // WHERE
+            $existingSeniorId
+
         ]);
 
-        header("Location: " . $baseUrl . "/pages/list/viewRecord.php?id=" . urlencode($senior_id) . "&updated=1");
+
+        /* =========================================
+           REDIRECT AFTER SUCCESS
+        ========================================= */
+
+        header(
+            "Location: " .
+            $baseUrl .
+            "/pages/list/viewRecord.php?id=" .
+            urlencode($senior_id) .
+            "&updated=1"
+        );
+
         exit;
+
 
     } catch (PDOException $e) {
 
-        die("Failed to update record: " . $e->getMessage());
+        die(
+            "Failed to update record: " .
+            $e->getMessage()
+        );
 
     }
 
@@ -400,7 +541,10 @@ This uses the `$pdo` connection from your `db.php`, which is the connection your
 
                     <div>
 
-                        <h2><i class="fa-solid fa-address-card"></i> Personal Information</h2>
+                        <h2>
+                            <i class="fa-solid fa-user-tie" style="color: #3272c7;"></i>
+                            PERSONAL INFORMATION
+                        </h2>
 
                         <p>
                             Basic information of the senior citizen.
@@ -723,7 +867,10 @@ This uses the `$pdo` connection from your `db.php`, which is the connection your
             <div class="record-section-header">
 
                 <div>
-                    <h2>Senior Citizen Information</h2>
+                    <h2>
+                        <i class="fa-solid fa-user-pen" style="color: #3272c7;"></i>
+                        SENIOR CITIZEN INFORMATION
+                    </h2>
 
                     <p>
                         Pension, PhilHealth, dependency, housing, health, and medication information.

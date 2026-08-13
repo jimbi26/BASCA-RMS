@@ -458,7 +458,8 @@ function enableEditing() {
 
   const editBtn = document.getElementById("editButton");
   if (editBtn) {
-    editBtn.innerHTML = '<i class="fa-solid fa-floppy-disk"></i> SAVE';
+    editBtn.innerHTML =
+      '<i class="fa-solid fa-floppy-disk" style="color: white;"></i> <span style="color: white;">SAVE</span>';
   }
 
   document.body.classList.add("editing-active");
