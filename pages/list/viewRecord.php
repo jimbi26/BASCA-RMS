@@ -400,7 +400,7 @@ This uses the `$pdo` connection from your `db.php`, which is the connection your
 
                     <div>
 
-                        <h2>Personal Information</h2>
+                        <h2><i class="fa-solid fa-address-card"></i> Personal Information</h2>
 
                         <p>
                             Basic information of the senior citizen.
@@ -713,6 +713,187 @@ This uses the `$pdo` connection from your `db.php`, which is the connection your
 
         </div>
         </div>
+
+        <!-- =========================================
+     SENIOR CITIZEN INFORMATION
+========================================= -->
+
+        <div class="record-info-card">
+
+            <div class="record-section-header">
+
+                <div>
+                    <h2>Senior Citizen Information</h2>
+
+                    <p>
+                        Pension, PhilHealth, dependency, housing, health, and medication information.
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div class="record-info-grid">
+
+
+                <!-- PENSION -->
+                <div class="info-item">
+
+                    <span class="info-label">
+                        Pension
+                    </span>
+
+                    <span class="info-value">
+
+                        <span id="pensionValue" data-editable="true" data-field="pension">
+                            <?php
+                            echo !empty($record['pension'])
+                                ? htmlspecialchars($record['pension'])
+                                : 'Not provided';
+                            ?>
+                        </span>
+
+                    </span>
+
+                </div>
+
+
+                <!-- PHILHEALTH NUMBER -->
+                <div class="info-item">
+
+                    <span class="info-label">
+                        PhilHealth Number
+                    </span>
+
+                    <span class="info-value">
+
+                        <span id="philhealthNumberValue" data-editable="true" data-field="philhealth_number">
+                            <?php
+                            echo !empty($record['philhealth_number'])
+                                ? htmlspecialchars($record['philhealth_number'])
+                                : 'Not provided';
+                            ?>
+                        </span>
+
+                    </span>
+
+                </div>
+
+
+                <!-- DEPENDENCY -->
+                <div class="info-item">
+
+                    <span class="info-label">
+                        Dependency
+                    </span>
+
+                    <span class="info-value">
+
+                        <span id="dependencyValue" data-editable="true" data-field="dependency">
+                            <?php
+                            echo !empty($record['dependency'])
+                                ? htmlspecialchars($record['dependency'])
+                                : 'Not provided';
+                            ?>
+                        </span>
+
+                    </span>
+
+                </div>
+
+
+                <!-- HOUSING -->
+                <div class="info-item">
+
+                    <span class="info-label">
+                        Housing
+                    </span>
+
+                    <span class="info-value">
+
+                        <span id="housingValue" data-editable="true" data-field="housing">
+                            <?php
+                            echo !empty($record['housing'])
+                                ? htmlspecialchars($record['housing'])
+                                : 'Not provided';
+                            ?>
+                        </span>
+
+                    </span>
+
+                </div>
+
+
+                <!-- HEALTH PROBLEMS -->
+                <div class="info-item">
+
+                    <span class="info-label">
+                        Health Problems
+                    </span>
+
+                    <span class="info-value">
+
+                        <span id="healthProblemsValue" data-editable="true" data-field="health_problems">
+                            <?php
+                            echo !empty($record['health_problems'])
+                                ? nl2br(htmlspecialchars($record['health_problems']))
+                                : 'Not provided';
+                            ?>
+                        </span>
+
+                    </span>
+
+                </div>
+
+
+                <!-- MEDICINES -->
+                <div class="info-item">
+
+                    <span class="info-label">
+                        Medicines / Maintenance Drugs
+                    </span>
+
+                    <span class="info-value">
+
+                        <span id="medicinesValue" data-editable="true" data-field="medicines">
+                            <?php
+                            echo !empty($record['medicines'])
+                                ? nl2br(htmlspecialchars($record['medicines']))
+                                : 'Not provided';
+                            ?>
+                        </span>
+
+                    </span>
+
+                </div>
+
+
+                <!-- DISABILITY -->
+                <div class="info-item">
+
+                    <span class="info-label">
+                        Disability & Reference Code
+                    </span>
+
+                    <span class="info-value">
+
+                        <span id="disabilityValue" data-editable="true" data-field="disability">
+                            <?php
+                            echo !empty($record['disability'])
+                                ? htmlspecialchars($record['disability'])
+                                : 'Not provided';
+                            ?>
+                        </span>
+
+                    </span>
+
+                </div>
+
+
+            </div>
+
+        </div>
+        <br>
         <!-- =========================================
              ID TYPE SWITCH
         ========================================= -->
