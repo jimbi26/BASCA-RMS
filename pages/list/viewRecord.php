@@ -735,10 +735,9 @@ This uses the `$pdo` connection from your `db.php`, which is the connection your
 
                         <span class="info-value">
 
-                            <span id="ageValue" data-editable="true" data-field="age">
+                            <span id="ageValue">
                                 <?php echo $age !== '' ? htmlspecialchars($age . ' years old') : 'Not provided'; ?>
                             </span>
-
                         </span>
 
                     </div>
@@ -1129,6 +1128,15 @@ This uses the `$pdo` connection from your `db.php`, which is the connection your
     </main>
     <div id="recordMetadata" data-senior-id="<?php echo htmlspecialchars($record['senior_id'], ENT_QUOTES); ?>"
         style="display:none;"></div>
+
+    <!-- Page Loading Overlay -->
+    <div id="pageLoader" class="page-loader">
+        <div class="loader-content">
+            <div class="loading-spinner"></div>
+            <p id="loaderTitle">Saving Changes...</p>
+            <span id="loaderMessage">Please wait...</span>
+        </div>
+    </div>
     <script src="../../pages/list/viewrecord.js"></script>
 </body>
 

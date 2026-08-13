@@ -94,124 +94,6 @@ function printIDImage() {
         <html>
         <head>
 
-            <title>Print Identification Document</title>
-
-            <style>
-
-                @page {
-                    size: A4 portrait;
-                    margin: 0;
-                }
-
-                * {
-                    box-sizing: border-box;
-                }
-
-                html,
-                body {
-                    margin: 0;
-                    padding: 0;
-                    width: 210mm;
-                    height: 297mm;
-                    background: white;
-                }
-
-                .print-page {
-                    width: 210mm;
-                    height: 297mm;
-
-                    margin: 0;
-                    padding: 0;
-
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-
-                    overflow: hidden;
-                }
-
-                .print-page img {
-                    width: 210mm;
-                    height: 297mm;
-
-                    display: block;
-
-                    object-fit: fill;
-                }
-
-                @media print {
-
-                    html,
-                    body {
-                        width: 210mm;
-                        height: 297mm;
-                        margin: 0;
-                        padding: 0;
-                    }
-
-                    .print-page {
-                        width: 210mm;
-                        height: 297mm;
-                    }
-
-                    .print-page img {
-                        width: 210mm;
-                        height: 297mm;
-                    }
-
-                }
-
-            </style>
-
-        </head>
-
-        <body>
-
-            <div class="print-page">
-
-                <img
-                    src="${image.src}"
-                    alt="Identification Document"
-                >
-
-            </div>
-
-            <script>
-
-                window.onload = function () {
-
-                    window.focus();
-
-                    setTimeout(function () {
-                        window.print();
-                    }, 300);
-
-                };
-
-            <\/script>
-
-        </body>
-        </html>
-    `);
-
-  printWindow.document.close();
-}
-// Print Image Function
-function printIDImage() {
-  const image = document.getElementById("idImage");
-
-  if (!image || !image.src) {
-    alert("No identification image available to print.");
-    return;
-  }
-
-  const printWindow = window.open("", "_blank", "width=900,height=900");
-
-  printWindow.document.write(`
-        <!DOCTYPE html>
-        <html>
-        <head>
-
             <meta charset="UTF-8">
 
             <title>Print Identification Document</title>
@@ -449,17 +331,50 @@ function toggleEditMode() {
   if (!__isEditing) {
     enableEditing();
   } else {
-    saveEdits();
+    showPageLoader(
+      "Saving Changes...",
+      "Please wait while we update the record.",
+    );
+
+    // Force browser to render the loading overlay first
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        saveEdits();
+      });
+    });
   }
 }
 
+function showPageLoader(title, message) {
+  const loader = document.getElementById("pageLoader");
+
+  if (!loader) {
+    console.error("Page loader not found.");
+    return;
+  }
+
+  const loaderTitle = document.getElementById("loaderTitle");
+  const loaderMessage = document.getElementById("loaderMessage");
+
+  if (loaderTitle) {
+    loaderTitle.textContent = title || "Saving Changes...";
+  }
+
+  if (loaderMessage) {
+    loaderMessage.textContent = message || "Please wait...";
+  }
+
+  loader.classList.add("show");
+
+  // Force browser to recognize the new visual state
+  loader.offsetHeight;
+}
 function enableEditing() {
   __isEditing = true;
 
   const editBtn = document.getElementById("editButton");
   if (editBtn) {
-    editBtn.innerHTML =
-      '<i class="fa-solid fa-floppy-disk" style="color: white;"></i> <span style="color: white;">SAVE</span>';
+    editBtn.innerHTML = '<i class="fa-solid fa-floppy-disk"></i> SAVE';
   }
 
   document.body.classList.add("editing-active");
