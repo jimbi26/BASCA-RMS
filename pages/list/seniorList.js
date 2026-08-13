@@ -6,6 +6,12 @@ document.addEventListener("DOMContentLoaded", function () {
   const genderFilter = document.getElementById("genderFilter");
   const tableBody = document.getElementById("recordsTableBody");
 
+  console.log("Search:", searchInput);
+  console.log("Age:", ageFilter);
+  console.log("Barangay:", barangayFilter);
+  console.log("Year:", yearFilter);
+  console.log("Gender:", genderFilter);
+  console.log("Table:", tableBody);
   if (
     !searchInput ||
     !ageFilter ||
