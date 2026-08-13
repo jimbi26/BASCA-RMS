@@ -278,7 +278,7 @@ function calculateAge($birthDate)
 
 
                 <!-- Deceased -->
-                <div class="filter-checkbox">
+                <!-- <div class="filter-checkbox">
 
                     <label>
 
@@ -290,7 +290,7 @@ function calculateAge($birthDate)
 
                     </label>
 
-                </div>
+                </div> -->
 
             </div>
 
@@ -387,8 +387,7 @@ function calculateAge($birthDate)
                                     data-gender="<?php echo htmlspecialchars($record['sex']); ?>"
                                     data-barangay="<?php echo htmlspecialchars($record['barangay']); ?>"
                                     data-year="<?php echo date('Y', strtotime($record['birth_date'])); ?>"
-                                    data-rrn="<?php echo htmlspecialchars($record['rrn']); ?>"
-                                    data-is-deceased="<?php echo htmlspecialchars($record['is_deceased'] ?? 'No'); ?>">
+                                    data-rrn="<?php echo htmlspecialchars($record['rrn']); ?>">
 
                                     <td style="text-transform: uppercase;">
                                         <?php echo htmlspecialchars($record['senior_id']); ?>

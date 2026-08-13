@@ -4,7 +4,6 @@ document.addEventListener("DOMContentLoaded", function () {
   const barangayFilter = document.getElementById("barangayFilter");
   const yearFilter = document.getElementById("yearFilter");
   const genderFilter = document.getElementById("genderFilter");
-  const deceasedFilter = document.getElementById("deceasedFilter");
   const tableBody = document.getElementById("recordsTableBody");
 
   if (
@@ -13,7 +12,6 @@ document.addEventListener("DOMContentLoaded", function () {
     !barangayFilter ||
     !yearFilter ||
     !genderFilter ||
-    !deceasedFilter ||
     !tableBody
   ) {
     console.error("Records filter: Required element not found.");
@@ -30,7 +28,6 @@ document.addEventListener("DOMContentLoaded", function () {
     year: row.dataset.year || "",
     gender: (row.dataset.gender || "").toLowerCase(),
     status: (row.dataset.status || "").toLowerCase(),
-    isDeceased: (row.dataset.isDeceased || "").toLowerCase(),
     rrn: (row.dataset.rrn || "").toLowerCase(),
     visible: true,
   }));
@@ -49,7 +46,6 @@ document.addEventListener("DOMContentLoaded", function () {
     const selectedBarangay = barangayFilter.value.trim().toLowerCase();
     const selectedYear = yearFilter.value;
     const selectedGender = genderFilter.value.trim().toLowerCase();
-    const showDeceased = deceasedFilter.checked;
 
     let visibleRecords = 0;
 
@@ -67,21 +63,12 @@ document.addEventListener("DOMContentLoaded", function () {
       const matchesGender =
         selectedGender === "" || record.gender === selectedGender;
 
-      let matchesDeceased = true;
-      if (showDeceased) {
-        matchesDeceased =
-          record.isDeceased === "1" ||
-          record.isDeceased === "yes" ||
-          record.isDeceased === "true";
-      }
-
       record.visible =
         matchesSearch &&
         matchesAge &&
         matchesBarangay &&
         matchesYear &&
-        matchesGender &&
-        matchesDeceased;
+        matchesGender;
 
       record.row.style.display = "none";
 
@@ -208,7 +195,6 @@ document.addEventListener("DOMContentLoaded", function () {
   barangayFilter.addEventListener("change", filterRecords);
   yearFilter.addEventListener("change", filterRecords);
   genderFilter.addEventListener("change", filterRecords);
-  deceasedFilter.addEventListener("change", filterRecords);
 
   filterRecords();
 });
