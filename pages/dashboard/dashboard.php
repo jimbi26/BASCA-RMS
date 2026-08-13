@@ -717,6 +717,86 @@ function calculateAge($birthDate)
     </script>
 
 
+    <!-- =========================================
+         DEVELOPER INFO FLOATING BUTTON
+    ========================================= -->
+
+    <button class="developer-fab" id="developerBtn" aria-label="Developer Info">
+        <i class="fa-solid fa-circle-info"></i>
+    </button>
+
+
+    <!-- =========================================
+         DEVELOPER INFO MODAL
+    ========================================= -->
+
+    <div class="developer-modal" id="developerModal">
+        <div class="modal-overlay" id="modalOverlay"></div>
+        <div class="modal-content">
+            <button class="modal-close" id="closeModal" aria-label="Close modal">
+                <i class="fa-solid fa-times"></i>
+            </button>
+            <div class="dev-card">
+                <div class="dev-photo">
+                    <img src="../../pages/dashboard/PROF.png" alt="Developer Photo">
+                </div>
+                <div class="dev-info">
+                    <h3>JIMBERT M. LUCERO</h3>
+                    <hr>
+                    <p class="dev-role">System Developer</p>
+                    <!-- <p class="dev-about">
+                        Developed and maintained the BASCA-RMS system for efficient senior citizen records management.
+                    </p> -->
+                    <!-- <div class="dev-contact">
+                        <a href="mailto:developer@example.com" title="Email">
+                            <i class="fa-solid fa-envelope"></i>
+                        </a>
+                        <a href="#" title="LinkedIn">
+                            <i class="fa-brands fa-linkedin"></i>
+                        </a>
+                        <a href="#" title="GitHub">
+                            <i class="fa-brands fa-github"></i>
+                        </a>
+                    </div> -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- =========================================
+         DEVELOPER INFO SCRIPT
+    ========================================= -->
+
+    <script>
+        const developerBtn = document.getElementById('developerBtn');
+        const developerModal = document.getElementById('developerModal');
+        const closeModal = document.getElementById('closeModal');
+        const modalOverlay = document.getElementById('modalOverlay');
+
+        // Open modal when button is clicked
+        developerBtn.addEventListener('click', function () {
+            developerModal.classList.add('show');
+        });
+
+        // Close modal when close button is clicked
+        closeModal.addEventListener('click', function () {
+            developerModal.classList.remove('show');
+        });
+
+        // Close modal when overlay is clicked
+        modalOverlay.addEventListener('click', function () {
+            developerModal.classList.remove('show');
+        });
+
+        // Close modal when ESC key is pressed
+        document.addEventListener('keydown', function (event) {
+            if (event.key === 'Escape' && developerModal.classList.contains('show')) {
+                developerModal.classList.remove('show');
+            }
+        });
+    </script>
+
 </body>
 
 </html>
