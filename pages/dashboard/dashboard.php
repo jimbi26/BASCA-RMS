@@ -282,7 +282,7 @@ function calculateAge($birthDate)
              SENIOR CITIZEN APPLICATIONS GRAPH
         ========================================= -->
 
-        <section class="content-card monthly-chart-card">
+        <!-- <section class="content-card monthly-chart-card">
 
             <div class="content-card-header">
 
@@ -307,7 +307,7 @@ function calculateAge($birthDate)
 
             </div>
 
-        </section>
+        </section> -->
 
 
         <!-- =========================================

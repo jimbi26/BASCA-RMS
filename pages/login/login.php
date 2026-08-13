@@ -98,10 +98,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </div>
 
         <!-- Login -->
-        <a href="../dashboard/dashboard.php" class="login-btn" onclick="loginUser(event)">
-            <i class="bi bi-box-arrow-in-right"></i>
-            Sign In
-        </a>
+        <button type="button" class="login-btn" onclick="loginUser(event)">
+            <i class="bi bi-box-arrow-in-right" id="loginIcon"></i>
+            <span id="loginText">Sign In</span>
+            <span id="loginLoader" class="login-loader" aria-hidden="true"></span>
+        </button>
 
         <!-- Footer -->
         <p class="login-footer">

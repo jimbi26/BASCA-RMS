@@ -107,8 +107,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     visibleRecords.forEach((record, index) => {
       record.row.style.display =
-        index >= (currentPage - 1) * pageSize &&
-        index < currentPage * pageSize
+        index >= (currentPage - 1) * pageSize && index < currentPage * pageSize
           ? ""
           : "none";
     });

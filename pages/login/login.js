@@ -18,12 +18,28 @@ function togglePassword() {
 function loginUser(event) {
   event.preventDefault();
 
+  const button = event.currentTarget;
   const username = document.getElementById("loginUsername").value.trim();
   const password = document.getElementById("loginPassword").value;
 
   if (username === "" || password === "") {
     alert("Please enter your username and password.");
     return;
+  }
+
+  // Show loading animation
+  button.classList.add("loading");
+  button.disabled = true;
+
+  const loginText = document.getElementById("loginText");
+  const loginIcon = document.getElementById("loginIcon");
+  const loginLoader = document.getElementById("loginLoader");
+
+  loginText.textContent = "Signing In...";
+  loginIcon.style.display = "none";
+  if (loginLoader) {
+    loginLoader.style.display = "inline-block";
+    loginLoader.style.visibility = "visible";
   }
 
   const form = document.createElement("form");
@@ -48,5 +64,8 @@ function loginUser(event) {
 
   document.body.appendChild(form);
 
-  form.submit();
+  // Submit after loading state is displayed
+  requestAnimationFrame(() => {
+    setTimeout(() => form.submit(), 100);
+  });
 }

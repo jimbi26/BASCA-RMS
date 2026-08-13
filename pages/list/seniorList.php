@@ -387,7 +387,8 @@ function calculateAge($birthDate)
                                     data-gender="<?php echo htmlspecialchars($record['sex']); ?>"
                                     data-barangay="<?php echo htmlspecialchars($record['barangay']); ?>"
                                     data-year="<?php echo date('Y', strtotime($record['birth_date'])); ?>"
-                                    data-rrn="<?php echo htmlspecialchars($record['rrn']); ?>">
+                                    data-rrn="<?php echo htmlspecialchars($record['rrn']); ?>"
+                                    data-is-deceased="<?php echo htmlspecialchars($record['is_deceased'] ?? 'No'); ?>">
 
                                     <td style="text-transform: uppercase;">
                                         <?php echo htmlspecialchars($record['senior_id']); ?>
