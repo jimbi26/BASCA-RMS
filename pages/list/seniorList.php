@@ -234,18 +234,11 @@ function calculateAge($birthDate)
 
                         $currentYear = date('Y');
 
-                        for ($year = $currentYear; $year >= 1966; $year--):
-
-                            ?>
-
+                        for ($year = 1966; $year >= 1900; $year--): ?>
                             <option value="<?php echo $year; ?>">
-
                                 <?php echo $year; ?>
-
                             </option>
-
                         <?php endfor; ?>
-
                     </select>
 
                 </div>
@@ -387,7 +380,7 @@ function calculateAge($birthDate)
                                     data-gender="<?php echo htmlspecialchars($record['sex']); ?>"
                                     data-barangay="<?php echo htmlspecialchars($record['barangay']); ?>"
                                     data-year="<?php echo date('Y', strtotime($record['birth_date'])); ?>"
-                                    data-rrn="<?php echo htmlspecialchars($record['rrn']); ?>">
+                                    data-rrn="<?php echo htmlspecialchars($record['rrn'] ?? ''); ?>">
 
                                     <td style="text-transform: uppercase;">
                                         <?php echo htmlspecialchars($record['senior_id']); ?>
@@ -435,7 +428,21 @@ function calculateAge($birthDate)
 
 
                                     <td style="text-transform: uppercase; font-weight: 600;">
-                                        <?php echo htmlspecialchars($record['rrn']); ?>
+                                        <?php if (!empty($record['rrn'])): ?>
+                                            <?php echo htmlspecialchars($record['rrn']); ?>
+                                        <?php else: ?>
+                                            <span style="
+                                                        display: inline-block;
+                                                        padding: 5px 10px;
+                                                        background-color: #dc3545;
+                                                        color: #ffffff;
+                                                        border-radius: 5px;
+                                                        font-size: 13px;
+                                                        font-weight: 700;
+                                                    ">
+                                                NO RRN
+                                            </span>
+                                        <?php endif; ?>
                                     </td>
 
                                     <td>

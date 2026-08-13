@@ -553,7 +553,7 @@ This uses the `$pdo` connection from your `db.php`, which is the connection your
 
                             <span id="middleNameValue" data-editable="true" data-field="middle_name"
                                 style="display:none;">
-                                <?php echo htmlspecialchars($record['middle_name']); ?>
+                                <?php echo htmlspecialchars($record['middle_name'] ?? ''); ?>
                             </span>
 
                             <span id="lastNameValue" data-editable="true" data-field="last_name" style="display:none;">
