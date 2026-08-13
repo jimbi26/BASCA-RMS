@@ -8,6 +8,14 @@ if (!isset($baseUrl)) {
 ?>
 <link rel="stylesheet" href="../../assets/sidebar/sidebar.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<!-- Page Loading Overlay -->
+<div id="pageLoader" class="page-loader">
+    <div class="loader-content">
+        <div class="loading-spinner"></div>
+        <p>Loading...</p>
+        <span>Please wait</span>
+    </div>
+</div>
 <aside class="sidebar">
 
     <div class="sidebar-header">
@@ -60,3 +68,42 @@ if (!isset($baseUrl)) {
     </nav>
 
 </aside>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+
+        const pageLoader = document.getElementById("pageLoader");
+
+        if (!pageLoader) return;
+
+        const navLinks = document.querySelectorAll(".sidebar-nav a");
+
+        navLinks.forEach(function (link) {
+
+            link.addEventListener("click", function (event) {
+
+                // Don't show loader for links opening in a new tab
+                if (link.target === "_blank") {
+                    return;
+                }
+
+                // Don't show loader for javascript links
+                if (link.getAttribute("href") === "#" ||
+                    link.getAttribute("href") === "") {
+                    return;
+                }
+
+                // Show loading screen
+                pageLoader.classList.add("show");
+
+            });
+
+        });
+
+        // Hide loader when page is loaded
+        window.addEventListener("pageshow", function () {
+            pageLoader.classList.remove("show");
+        });
+
+    });
+</script>

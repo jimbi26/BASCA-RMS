@@ -604,17 +604,17 @@ This uses the `$pdo` connection from your `db.php`, which is the connection your
                                     Not provided
                                 </span>
 
-                                <a href="#" class="add-rrn-button" onclick="openRRNModal(event)">
+                                <!-- <a href="#" class="add-rrn-button" onclick="openRRNModal(event)">
 
                                     <i class="fa-solid fa-plus"></i>
                                     Add RRN
 
-                                </a>
+                                </a> -->
                                 <!-- =========================================
                                     ADD RRN MODAL
                                 ========================================= -->
 
-                                <div class="rrn-modal-overlay" id="rrnModal">
+                                <!-- <div class="rrn-modal-overlay" id="rrnModal">
 
                                     <div class="rrn-modal">
 
@@ -669,7 +669,7 @@ This uses the `$pdo` connection from your `db.php`, which is the connection your
 
                                     </div>
 
-                                </div>
+                                </div> -->
 
                             <?php endif; ?>
 
