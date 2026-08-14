@@ -381,6 +381,7 @@ function enableEditing() {
 
   // Add cancel button
   const rightActions = document.querySelector(".record-view-right-actions");
+
   if (rightActions && !document.getElementById("cancelEditButton")) {
     const cancelBtn = document.createElement("button");
     cancelBtn.type = "button";
@@ -388,6 +389,7 @@ function enableEditing() {
     cancelBtn.className = "delete-button";
     cancelBtn.innerHTML = '<i class="fa-solid fa-xmark"></i> CANCEL';
     cancelBtn.onclick = cancelEditing;
+
     rightActions.insertBefore(
       cancelBtn,
       rightActions.querySelector(".delete-button"),
@@ -404,29 +406,52 @@ function enableEditing() {
     // Create input element based on field
     let input;
 
-    if (field === "is_deceased") {
+    // STATUS
+    if (field === "status") {
       input = document.createElement("select");
+
+      input.innerHTML = `
+        <option value="Active">Active</option>
+        <option value="Inactive">Inactive</option>
+      `;
+
+      input.value = original;
+
+      // IS DECEASED
+    } else if (field === "is_deceased") {
+      input = document.createElement("select");
+
       input.innerHTML =
         '<option value="0">No</option><option value="1">Yes</option>';
+
       input.value = original.toLowerCase().startsWith("y") ? "1" : "0";
+
+      // BIRTH DATE
     } else if (field === "birth_date") {
       input = document.createElement("input");
       input.type = "date";
+
       let parsedDate = new Date(
         original.replace(/([A-Za-z]+)\s+(\d{1,2}),\s*(\d{4})/, "$1 $2, $3"),
       );
+
       if (!isNaN(parsedDate.getTime())) {
         input.value = parsedDate.toISOString().slice(0, 10);
       } else {
         input.value = "";
       }
+
+      // AGE
     } else if (field === "age") {
       input = document.createElement("input");
       input.type = "number";
       input.min = "0";
       input.step = "1";
+
       const parsedAge = parseInt(original, 10);
       input.value = !isNaN(parsedAge) ? parsedAge : "";
+
+      // DEFAULT TEXT
     } else {
       input = document.createElement("input");
       input.type = "text";
@@ -434,18 +459,21 @@ function enableEditing() {
     }
 
     input.dataset.field = field;
+    input.dataset.editable = "true";
     input.className = "inline-edit-input";
-    // store original html for cancel
+
+    // Store original HTML for cancel
     input.dataset.originalHtml = el.outerHTML;
 
     if (["first_name", "middle_name", "last_name"].includes(field)) {
       const fullNameDisplay = document.getElementById("fullNameDisplay");
+
       if (fullNameDisplay) {
         fullNameDisplay.style.display = "none";
       }
     }
 
-    // Replace element with input
+    // Replace element with input/select
     el.parentNode.replaceChild(input, el);
   });
 }

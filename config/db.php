@@ -5,10 +5,8 @@ require_once __DIR__ . '/../vendor/autoload.php';
 use Dotenv\Dotenv;
 
 $dotenv = Dotenv::createImmutable(__DIR__ . '/..');
-// Use safeLoad so the app won't error when there's no .env (e.g. on Vercel).
 $dotenv->safeLoad();
 
-// Prefer variables loaded into $_ENV, otherwise fall back to getenv().
 $host = $_ENV['DB_HOST'] ?? getenv('DB_HOST') ?? '';
 $port = $_ENV['DB_PORT'] ?? getenv('DB_PORT') ?? '';
 $dbname = $_ENV['DB_NAME'] ?? getenv('DB_NAME') ?? '';
@@ -31,8 +29,7 @@ try {
 
 } catch (PDOException $e) {
 
-    die(
-        "Database connection failed: " .
-        $e->getMessage()
-    );
+    error_log("Database connection failed: " . $e->getMessage());
+
+    die("Unable to connect to the database. Please try again later.");
 }

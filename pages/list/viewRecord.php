@@ -554,9 +554,9 @@ This uses the `$pdo` connection from your `db.php`, which is the connection your
 
 
                     <span class="status-badge <?php echo $statusClass; ?>" id="statusValue" data-editable="true"
-                        data-field="status">
+                        data-field="status" data-value="<?php echo htmlspecialchars($record['status'] ?? ''); ?>">
 
-                        <?php echo htmlspecialchars($record['status']); ?>
+                        <?php echo htmlspecialchars($record['status'] ?? ''); ?>
 
                     </span>
 

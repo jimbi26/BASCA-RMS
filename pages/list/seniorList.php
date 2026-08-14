@@ -200,6 +200,7 @@ function calculateAge($birthDate)
                             "Villa Coloma",
                             "Villaros",
                             "Quirino",
+                             "Nangalisan",
                         ];
 
                         sort($barangays);
